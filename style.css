@@ -10,15 +10,22 @@
     flex-direction: column;
     margin-top: 3em;
     border: 3px solid black;
-    padding: 6px
+    padding: 6px;
 }
 
 .display{
  border: 1px solid black;
- padding: 1em;
+ padding: 1.5em;
  margin: 6px;
+ padding-left: 3.5em;
+ padding-right: 3.5em;
 }
 
 button{
-    margin: 1px;
+    margin: 3px;
+    padding: 6px;
+}
+
+button:hover{
+    cursor: pointer;
 }
