@@ -17,56 +17,66 @@ function numChoice(e){
        numberSelection = numberSelection  + e.target.id;
     }
     display.textContent = numberSelection;
-  // numberSele = string so figure out how to splice before and after operate
-  //might have to store operator under different function
     }
 
+let numOne;
+let numTwo;
+let operation;
+let formula = false;
 
 function show(e){
-    display.innerHTML = "";
-    let numOne = numberSelection;
     let operation = e.target.id;
-    console.log(numOne);
-    console.log(operation);
+    let numOne = numberSelection;
+    if(formula == false){
+        display.innerHTML='';
+        formula = true;
+    }else{
+        let numTwo = numberSelection;
+    }
+    
+    let numTwo = numberSelection;
+    display.textContent='';
+   
+    operate(numOne,operation,numTwo);
+}
+  
+
+function add (numOne,numTwo){
+   return numOne  + numTwo;
 }
 
-function add (x,y){
-   return x + y;
+function subtract(numOne,numTwo){
+    return numOne - numTwo;
 }
 
-function subtract(x,y){
-    return x - y;
+function multiply(numOne,numTwo){
+    return numOne * numTwo;
 }
 
-function multiply(x,y){
-    return x * y;
-}
-
-function divide(x,y){
-    return x / y;
+function divide(numOne,numTwo){
+    return numOne / numTwo;
 }
 
 
 // let x = a string and send that string through a loop and
 //like the fibonacci seq for multiply
-function operate(e){
-   
-for(let i = 0; i < operation.length; i++)
-  {  if(operation == '+'){
-        let answerAdd = add(x,y);
-        console.log(answerAdd);
+function operate(numOne, operation, numTwo){
+
+    if(operation == '+'){
+        let answerAdd = add(numOne,numTwo);
+        display.textContent = answerAdd;
     } else if(operation == '-'){
-        let answerSub = subtract(x,y);
-        console.log(answerSub);
+        let answerSub = subtract(numOne,numTwo);
+        display.textContent = answerSub;
     } else if(operation == '*'){
-        let answerMulti = multiply(x,y);
-        console.log(answerMulti);
+        let answerMulti = multiply(numOne,numTwo);
+        display.textContent = answerMulti;
     } else if(operation == '/'){
-        let answerDivide = divide(x,y);
-        console.log(answerDivide);
-    }
+        let answerDivide = divide(numOne,numTwo);
+        display.textContent = answerDivide;
     }
 }
+
 document.getElementById('clear').addEventListener('click', refresh)
 function refresh(){
     window.location.reload(true)
