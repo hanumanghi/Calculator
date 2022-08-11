@@ -1,6 +1,7 @@
 body{
     display: flex;
-    margin:150px;
+    justify-content: center;
+    align-items: center;
 }
 .calculate{
     display: grid;
