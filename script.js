@@ -21,25 +21,32 @@ function numChoice(e){
 
 let numOne;
 let numTwo;
-let operation;
-let formula = false;
+let currentOperation = null;
+
 
 function show(e){
+    if(currentOperation === null){
     let operation = e.target.id;
-    let numOne = numberSelection;
-    if(formula == false){
-        display.innerHTML='';
-        formula = true;
-    }else{
-        let numTwo = numberSelection;
+    let firstNum = Number(numberSelection);
+    display.innerHTML = '';
+    currentOperation = operation;
+    numOne = firstNum;
+    numberSelection = '';
+} else{
+        let secondNum = numberSelection;
+        display.textContent = secondNum;
+        numTwo = Number(secondNum);
     }
-    
-    let numTwo = numberSelection;
-    display.textContent='';
    
-    operate(numOne,operation,numTwo);
 }
-  
+
+function secondChoice(e){
+    if (currentOperation !== null){
+        let secondNum = numberSelection;
+        display.textContent = secondNum;
+        numTwo = Number(secondNum);
+    }
+}
 
 function add (numOne,numTwo){
    return numOne  + numTwo;
