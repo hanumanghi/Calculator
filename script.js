@@ -44,6 +44,10 @@ function show(e){
     }
 }
 
+function roundTotal(number){
+    return Math.round(number * 1000) / 1000;
+}
+
 function add (numOne,numTwo){
    return numOne  + numTwo;
 }
@@ -64,20 +68,20 @@ function operate(numOne,currentOperation,numTwo){
     let answer='';
     if(currentOperation == '+'){
         let answer = add(numOne,numTwo);
-        display.textContent = answer;
-        return answer;
+        display.textContent = roundTotal(answer);
+        return roundTotal(answer);
     } else if(currentOperation == '-'){
         let answer = subtract(numOne,numTwo);
-        display.textContent = answer;
-        return answer;
+        display.textContent = roundTotal(answer);
+        return roundTotal(answer);
     } else if(currentOperation == '*'){
         let answer = multiply(numOne,numTwo);
-        display.textContent = answer;
-        return answer;
+        display.textContent = roundTotal(answer);
+        return roundTotal(answer);
     } else if(currentOperation == '/'){
         let answer = divide(numOne,numTwo);
-        display.textContent = answer;
-        return answer;
+        display.textContent = roundTotal(answer);
+        return roundTotal(answer);
     }
 }
 
