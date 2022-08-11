@@ -1,10 +1,9 @@
 const operators = document.querySelectorAll(".operators");
 const numbers = document.querySelectorAll(".numbers");
 const display = document.querySelector(".display");
-const equal = document.getElementById("=")
 
-operators.forEach(operator => operator.addEventListener('click', show))
-numbers.forEach(number =>  number.addEventListener('click',numChoice))
+operators.forEach(operator => operator.addEventListener('click', show));
+numbers.forEach(number =>  number.addEventListener('click',numChoice));
 
 let flag = false;
 let numberSelection;
@@ -17,12 +16,12 @@ function numChoice(e){
        numberSelection = numberSelection  + e.target.id;
     }
     display.textContent = numberSelection;
-    }
+}
 
 let numOne;
-let numTwo;
+let numTwo = null;
 let currentOperation = null;
-
+let total = null;
 
 function show(e){
     if(currentOperation === null){
@@ -33,18 +32,15 @@ function show(e){
     numOne = firstNum;
     numberSelection = '';
 } else{
-        let secondNum = numberSelection;
+        let secondNum = Number(numberSelection);
         display.textContent = secondNum;
-        numTwo = Number(secondNum);
-    }
-   
-}
-
-function secondChoice(e){
-    if (currentOperation !== null){
-        let secondNum = numberSelection;
-        display.textContent = secondNum;
-        numTwo = Number(secondNum);
+        numTwo = secondNum;
+       total = operate(numOne,currentOperation,numTwo);
+        if(total !== null){
+             numOne = total;
+             currentOperation = null;
+             numTwo = null;
+        }
     }
 }
 
@@ -62,29 +58,28 @@ function multiply(numOne,numTwo){
 
 function divide(numOne,numTwo){
     return numOne / numTwo;
-}
+} 
 
-
-// let x = a string and send that string through a loop and
-//like the fibonacci seq for multiply
-function operate(numOne, operation, numTwo){
-
-    if(operation == '+'){
-        let answerAdd = add(numOne,numTwo);
-        display.textContent = answerAdd;
-    } else if(operation == '-'){
-        let answerSub = subtract(numOne,numTwo);
-        display.textContent = answerSub;
-    } else if(operation == '*'){
-        let answerMulti = multiply(numOne,numTwo);
-        display.textContent = answerMulti;
-    } else if(operation == '/'){
-        let answerDivide = divide(numOne,numTwo);
-        display.textContent = answerDivide;
+function operate(numOne,currentOperation,numTwo){
+    let answer='';
+    if(currentOperation == '+'){
+        let answer = add(numOne,numTwo);
+        display.textContent = answer;
+    } else if(currentOperation == '-'){
+        let answer = subtract(numOne,numTwo);
+        display.textContent = answer;
+    } else if(currentOperation == '*'){
+        let answer = multiply(numOne,numTwo);
+        display.textContent = answer;
+    } else if(currentOperation == '/'){
+        let answer = divide(numOne,numTwo);
+        display.textContent = answer;
     }
 }
 
+document.getElementById('equal').addEventListener('click', operate(numOne,currentOperation,numTwo))
 document.getElementById('clear').addEventListener('click', refresh)
+
 function refresh(){
     window.location.reload(true)
 }
