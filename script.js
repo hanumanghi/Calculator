@@ -21,12 +21,12 @@ function numChoice(e){
 let numOne;
 let numTwo = null;
 let currentOperation = null;
-let total = null;
+let currentSolution = null;
 
 function show(e){
     if(currentOperation === null){
     let operation = e.target.id;
-    let firstNum = Number(numberSelection);
+    let firstNum = Number(display.textContent);
     display.innerHTML = '';
     currentOperation = operation;
     numOne = firstNum;
@@ -35,11 +35,11 @@ function show(e){
         let secondNum = Number(numberSelection);
         display.textContent = secondNum;
         numTwo = secondNum;
-       total = operate(numOne,currentOperation,numTwo);
-        if(total !== null){
-             numOne = total;
+        currentSolution = operate(numOne,currentOperation,numTwo);
+        if(currentSolution !== null){
              currentOperation = null;
              numTwo = null;
+             currentSolution = null;
         }
     }
 }
@@ -65,15 +65,19 @@ function operate(numOne,currentOperation,numTwo){
     if(currentOperation == '+'){
         let answer = add(numOne,numTwo);
         display.textContent = answer;
+        return answer;
     } else if(currentOperation == '-'){
         let answer = subtract(numOne,numTwo);
         display.textContent = answer;
+        return answer;
     } else if(currentOperation == '*'){
         let answer = multiply(numOne,numTwo);
         display.textContent = answer;
+        return answer;
     } else if(currentOperation == '/'){
         let answer = divide(numOne,numTwo);
         display.textContent = answer;
+        return answer;
     }
 }
 
