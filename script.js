@@ -46,6 +46,17 @@ function show(e){
     }
 }
 
+function period(){
+    numberSelection += '.';
+    display.textContent = numberSelection;
+}
+
+function erase(){
+    numberSelection = numberSelection.slice(0,-1);
+   display.textContent = numberSelection;
+   
+}
+
 function roundTotal(number){
     return Math.round(number * 1000) / 1000;
 }
@@ -93,6 +104,8 @@ function operate(numOne,currentOperation,numTwo){
 
 document.getElementById('equal').addEventListener('click', operate(numOne,currentOperation,numTwo))
 document.getElementById('clear').addEventListener('click', refresh)
+document.getElementById('decimal').addEventListener('click',period)
+document.getElementById('delete').addEventListener('click',erase)
 
 function refresh(){
     window.location.reload(true)

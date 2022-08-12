@@ -2,6 +2,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: tan;
 }
 .calculate{
     display: grid;
@@ -15,21 +16,48 @@ body{
     flex-direction: column;
     border: 3px solid black;
     padding: 6px;
+    margin-top: 3.5em;
+    background-color:midnightblue;
+    border-radius: 12px;
 }
 
 .display{
  border: 1px solid black;
- padding: 1.5em;
+ padding: 2.5em;
  margin: 6px;
- padding-left: 3.5em;
- padding-right: 3.5em;
+ padding-left: 6.5em;
+ padding-right: 6.5em;
+ background-color: rgb(144, 246, 154);
+ border-radius: 12px;
+
 }
 
 button{
     margin: 3px;
-    padding: 6px;
+    padding: 18px;
+    font-size: 12px;
 }
 
 button:hover{
     cursor: pointer;
+}
+
+.operators{
+    background-color: darkgrey;
+}
+
+.numbers{
+    background-color: orange;
+}
+
+#clear{
+    background-color: orangered;
+}
+
+#decimal{
+    background-color: darkgrey;
+}
+
+#delete{
+    background-color: gold;
 }
