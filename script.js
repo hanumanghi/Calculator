@@ -6,7 +6,7 @@ operators.forEach(operator => operator.addEventListener('click',show));
 numbers.forEach(number =>  number.addEventListener('click',numChoice));
 
 let flag = false;
-let numberSelection;
+let numberSelection = '0';
 
 function numChoice(e){
     if(flag == false){
@@ -31,12 +31,14 @@ function show(e){
     currentOperation = operation;
     numOne = firstNum;
     numberSelection = '';
+    document.getElementById('decimal').disabled=false
 } else{
         let secondNum = Number(numberSelection);
         display.textContent = secondNum;
         numTwo = secondNum;
         currentSolution = operate(numOne,currentOperation,numTwo);
         numberSelection = '';
+        document.getElementById('decimal').disabled=false;
         if(currentSolution !== null){
              numOne = Number(display.textContent);
              currentOperation = e.target.id;
@@ -48,6 +50,9 @@ function show(e){
 
 function period(){
     numberSelection += '.';
+    if(numberSelection.includes('.')){
+        document.getElementById('decimal').disabled=true;
+    }
     display.textContent = numberSelection;
 }
 
