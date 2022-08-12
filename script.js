@@ -2,7 +2,7 @@ const operators = document.querySelectorAll(".operators");
 const numbers = document.querySelectorAll(".numbers");
 const display = document.querySelector(".display");
 
-operators.forEach(operator => operator.addEventListener('click', show));
+operators.forEach(operator => operator.addEventListener('click',show));
 numbers.forEach(number =>  number.addEventListener('click',numChoice));
 
 let flag = false;
@@ -13,7 +13,7 @@ function numChoice(e){
         numberSelection = e.target.id;
         flag = true;
     }else {
-       numberSelection = numberSelection  + e.target.id;
+       numberSelection = numberSelection + e.target.id;
     }
     display.textContent = numberSelection;
 }
@@ -36,8 +36,10 @@ function show(e){
         display.textContent = secondNum;
         numTwo = secondNum;
         currentSolution = operate(numOne,currentOperation,numTwo);
+        numberSelection = '';
         if(currentSolution !== null){
-             currentOperation = null;
+             numOne = Number(display.textContent);
+             currentOperation = e.target.id;
              numTwo = null;
              currentSolution = null;
         }
@@ -49,7 +51,7 @@ function roundTotal(number){
 }
 
 function add (numOne,numTwo){
-   return numOne  + numTwo;
+   return numOne + numTwo;
 }
 
 function subtract(numOne,numTwo){
@@ -80,8 +82,12 @@ function operate(numOne,currentOperation,numTwo){
         return roundTotal(answer);
     } else if(currentOperation == '/'){
         let answer = divide(numOne,numTwo);
+        if(numTwo === 0){
+            return display.textContent = 'ERROR'
+        }else{
         display.textContent = roundTotal(answer);
         return roundTotal(answer);
+        }
     }
 }
 

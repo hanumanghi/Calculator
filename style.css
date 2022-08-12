@@ -13,7 +13,6 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 3em;
     border: 3px solid black;
     padding: 6px;
 }
