@@ -51,11 +51,7 @@ function period(){
     numberSelection += '.';
     if(numberSelection.includes('.')){
         document.getElementById('decimal').disabled=true;
-        document.onkeydown = function (e) {
-            if (e.key == "."){
-                e.key.disabled=true
-            }
-        }
+        onkeydown = "return e.key != ."
     }
     display.textContent = numberSelection;
 }
@@ -133,5 +129,6 @@ function keyboardButtons(e){
    }if(e.key === 'Backspace'){
     erase(e);
    }
-   
+   if(e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/')
+   { currentOperation = e.key}
 }
