@@ -33,8 +33,7 @@ function show(e){
     numberSelection = '';
     document.getElementById('decimal').disabled=false
 } else{
-        let secondNum = Number(numberSelection);
-        display.textContent = secondNum;
+        let secondNum = Number(display.textContent);
         numTwo = secondNum;
         currentSolution = operate(numOne,currentOperation,numTwo);
         numberSelection = '';
@@ -52,6 +51,11 @@ function period(){
     numberSelection += '.';
     if(numberSelection.includes('.')){
         document.getElementById('decimal').disabled=true;
+        document.onkeydown = function (e) {
+            if (e.key == "."){
+                e.key.disabled=true
+            }
+        }
     }
     display.textContent = numberSelection;
 }
@@ -107,12 +111,27 @@ function operate(numOne,currentOperation,numTwo){
     }
 }
 
-document.getElementById('equal').addEventListener('click', operate(numOne,currentOperation,numTwo))
+document.getElementById('equal').addEventListener('click', operate())
 document.getElementById('clear').addEventListener('click', refresh)
 document.getElementById('decimal').addEventListener('click',period)
 document.getElementById('delete').addEventListener('click',erase)
 
 function refresh(){
     window.location.reload(true)
-}
+} 
 
+window.addEventListener('keydown',keyboardButtons)
+
+function keyboardButtons(e){
+   if(e.key >= '0' && e.key <= '9'){
+    numberSelection += e.key;
+    display.textContent = numberSelection;
+   }if(e.key === 'Enter'){
+    operate();
+   }if(e.key === '.'){
+    period(e.key);
+   }if(e.key === 'Backspace'){
+    erase(e);
+   }
+   
+}
