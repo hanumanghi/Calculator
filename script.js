@@ -6,7 +6,7 @@ operators.forEach(operator => operator.addEventListener('click',show));
 numbers.forEach(number =>  number.addEventListener('click',numChoice));
 
 let flag = false;
-let numberSelection = '0';
+let numberSelection = '';
 
 function numChoice(e){
     if(flag == false){
@@ -51,7 +51,6 @@ function period(){
     numberSelection += '.';
     if(numberSelection.includes('.')){
         document.getElementById('decimal').disabled=true;
-        onkeydown = "return e.key != ."
     }
     display.textContent = numberSelection;
 }
@@ -83,7 +82,6 @@ function divide(numOne,numTwo){
 } 
 
 function operate(numOne,currentOperation,numTwo){
-    let answer='';
     if(currentOperation == '+'){
         let answer = add(numOne,numTwo);
         display.textContent = roundTotal(answer);
@@ -122,13 +120,38 @@ function keyboardButtons(e){
    if(e.key >= '0' && e.key <= '9'){
     numberSelection += e.key;
     display.textContent = numberSelection;
-   }if(e.key === 'Enter'){
-    operate();
+   }if(e.key === '=' || e.keyCode === 'ENTER'){
+    operate() ;
    }if(e.key === '.'){
     period(e.key);
    }if(e.key === 'Backspace'){
     erase(e);
    }
    if(e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/')
-   { currentOperation = e.key}
+   { if(currentOperation === null){
+    let firstNum = Number(display.textContent);
+    display.innerHTML = '';
+    currentOperation = e.key;
+    numOne = firstNum;
+    numberSelection = '';
+    document.getElementById('decimal').disabled=false
+} else{
+        let secondNum = Number(display.textContent);
+        numTwo = secondNum;
+        currentSolution = operate(numOne,currentOperation,numTwo);
+        numberSelection = '';
+        document.getElementById('decimal').disabled=false;
+        if(currentSolution !== null){
+             numOne = Number(display.textContent);
+             currentOperation = e.key;
+             numTwo = null;
+             currentSolution = null;
+            }
+     }
+    }
 }
+
+
+
+// key . disable
+// key "=" to work
