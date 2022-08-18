@@ -47,12 +47,16 @@ function show(e){
     }
 }
 
+let dotReset = false;
+
 function period(){
-    numberSelection += '.';
     if(numberSelection.includes('.')){
-        document.getElementById('decimal').disabled=true;
+         dotReset = true;
+    }else{
+        numberSelection += '.'
+        display.textContent = numberSelection;
+        dotReset = false;
     }
-    display.textContent = numberSelection;
 }
 
 function erase(){
@@ -120,14 +124,17 @@ function keyboardButtons(e){
    if(e.key >= '0' && e.key <= '9'){
     numberSelection += e.key;
     display.textContent = numberSelection;
-   }if(e.key === '=' || e.keyCode === 'ENTER'){
-    operate() ;
+   }if(e.key === 'Enter' || e.key === '='){
+    let numTwo = Number(display.textContent);
+    numOne = operate(numOne,currentOperation,numTwo);
+    currentOperation = null;
    }if(e.key === '.'){
     period(e.key);
    }if(e.key === 'Backspace'){
     erase(e);
-   }
-   if(e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/')
+   }if(e.key === 'Escape'){
+    refresh();
+   }if(e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/')
    { if(currentOperation === null){
     let firstNum = Number(display.textContent);
     display.innerHTML = '';
@@ -151,7 +158,4 @@ function keyboardButtons(e){
     }
 }
 
-
-
-// key . disable
 // key "=" to work
